@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div>
+  <h1>Auth</h1>
+
+  <p>
+    <ul>
+      {% if user not user.is_anonymous %}
+       <li>
+         <a>Hello {{ user.get_full_name|default:user.username}}! </a>
+       </li>
+
+       <li>
+         <a href="{% url 'auth:logut' %} ?next={{ request.path}}">Logout</a>
+       </li>
+       {% else %}
+
+       <li>
+         <a href="{% url 'social:begin' 'twitter'% }?next={{ request.path }}">Login with Twitter</a>
+       </li>
+       {% endif %}
+    </ul>
+  </p>
+</div>
+{% endblock %}
